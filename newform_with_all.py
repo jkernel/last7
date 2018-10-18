@@ -44,9 +44,23 @@ with open('links.txt','r') as fo:
 	      search_team1_world_rank= driver.find_element_by_css_selector('div.halfcontainer:nth-of-type(1) div.datarow:nth-of-type(5) div.value')
 	      search_team1_chance_score= driver.find_element_by_css_selector('div.halfcontainer:nth-of-type(1) div.factitem:nth-of-type(7) div.value')
 	      search_team1_chance_concede= driver.find_element_by_css_selector('div.halfcontainer:nth-of-type(1) div.factitem:nth-of-type(8) div.value')
+	      search_team1_over_1_5_mats= driver.find_element_by_css_selector('div.halfcontainer:nth-of-type(1) div.barchart:nth-of-type(8) div.barrow:nth-of-type(1) div.bar')
+	      search_team1_over_2_5_mats= driver.find_element_by_css_selector('div.halfcontainer:nth-of-type(1) div.barchart:nth-of-type(10) div.barrow:nth-of-type(1) div.bar')
+	      search_team1_btts= driver.find_element_by_css_selector('div.halfcontainer:nth-of-type(1) div.barchart:nth-of-type(17) div.barrow:nth-of-type(1) div.bar')
+	      
+	      search_game_datetime= driver.find_element_by_css_selector('div.halfcontainer:nth-of-type(1) div.starttime')
+	      search_history_team1_wins= driver.find_element_by_css_selector('div.facts div.datarow:nth-of-type(3) div.value')
+	      search_history_draws= driver.find_element_by_css_selector('div.facts div.datarow:nth-of-type(4) div.value')
+	      search_history_team2_wins= driver.find_element_by_css_selector('div.facts div.datarow:nth-of-type(5) div.value')
+
+	      
+	      
 	      
       except NoSuchElementException:
-      	print("Element not found")
+      	print("Element of Home Team not found")
+      	
+      game_datetime=search_game_datetime.text
+      	
       team1_name = search_team1_name.text
       team1_country = search_team1_country.text          
       team1_last10 = search_team1_form.text   #😀 Kanei text ta last 10 formas
@@ -60,11 +74,28 @@ with open('links.txt','r') as fo:
       team1_int_chance_to_score=int(team1_nosymbol_chance_to_score)
       team1_chance_to_concede= search_team1_chance_concede.text
       team1_nosymbol_chance_to_concede=team1_chance_to_concede.strip('%')
-      team1_int_chance_to_concede=int(team1_nosymbol_chance_to_concede)  
+      team1_int_chance_to_concede=int(team1_nosymbol_chance_to_concede)
+      team1_over_1_5_mats= search_team1_over_1_5_mats.text
+      team1_over_1_5_mats_nosymbol= team1_over_1_5_mats.strip('%')  #afairesh symbolou %
+      team1_over_1_5_int= int(team1_over_1_5_mats_nosymbol)
+      team1_over_2_5_mats= search_team1_over_2_5_mats.text
+      team1_over_2_5_mats_nosymbol= team1_over_2_5_mats.strip('%')
+      team1_over_2_5_int= int(team1_over_2_5_mats_nosymbol)
+      team1_btts= search_team1_btts.text
+      team1_btts_nosymbol= team1_btts.strip('%')
+      team1_btts_int= int(team1_btts_nosymbol)
+      
+      history_team1_wins= search_history_team1_wins.text
+      history_draws= search_history_draws.text
+      history_team2_wins= search_history_team2_wins.text
+        
       
       
       print("")
+      print("Έναρξη: ",game_datetime)
+      print("")
       print("Home Team: ",team1_name)
+      
       try:
 	      team1_int_world_rank= int(team1_world_rank)
 	      print("World Rank: ",team1_int_world_rank)
@@ -73,10 +104,13 @@ with open('links.txt','r') as fo:
       	print("Δεν έχει World Rank")
       	
       
-      print("---> AVG goals scored: ",team1_avg_goals_scored)
-      print("---> AVG goals conceded: ",team1_avg_goals_conceded)
-      print("Chance to score: ",team1_int_chance_to_score,"%")
-      print("Chance to concede: ",team1_int_chance_to_concede,"%")
+      print("---> Μ.Ο γκολ που σκοράρει: ",team1_avg_goals_scored)
+      print("---> Μ.Ο γκολ που δέχεται: ",team1_avg_goals_conceded)
+      print("Πιθανότητα να βάλει γκολ: ",team1_int_chance_to_score,"%")
+      print("Πιθανότητα να δεχτεί γκολ: ",team1_int_chance_to_concede,"%")
+      print("Ποσοστό Over 1,5: ",team1_over_1_5_int,"%")
+      print("Ποσοστό Over 2,5: ",team1_over_2_5_int,"%")
+      print("Ποσοστό BTTS: ",team1_btts_int,"%")
      
       
       
@@ -126,11 +160,15 @@ with open('links.txt','r') as fo:
 	      search_team2_world_rank= driver.find_element_by_css_selector('div.halfcontainer:nth-of-type(2) div.datarow:nth-of-type(5) div.value')
 	      search_team2_chance_score= driver.find_element_by_css_selector('div.halfcontainer:nth-of-type(2) div.factitem:nth-of-type(7) div.value')
 	      search_team2_chance_concede= driver.find_element_by_css_selector('div.halfcontainer:nth-of-type(2) div.factitem:nth-of-type(8) div.value')
+	      search_team2_over_1_5_mats= driver.find_element_by_css_selector('div.halfcontainer:nth-of-type(2) div.barchart:nth-of-type(8) div.barrow:nth-of-type(1) div.bar')
+	      search_team2_over_2_5_mats= driver.find_element_by_css_selector('div.halfcontainer:nth-of-type(2) div.barchart:nth-of-type(10) div.barrow:nth-of-type(1) div.bar')
+	      search_team2_btts= driver.find_element_by_css_selector('div.halfcontainer:nth-of-type(2) div.barchart:nth-of-type(17) div.barrow:nth-of-type(1) div.bar')
+	      search_team2_btts= driver.find_element_by_css_selector('div.halfcontainer:nth-of-type(2) div.barchart:nth-of-type(17) div.barrow:nth-of-type(1) div.bar')
 	      
       except NoSuchElementException:
          print("Element of Away Team not found")   
       team2_name = search_team2_name.text
-      team1_country = search_team2_country.text     
+      team2_country = search_team2_country.text     
       team2_last10 = search_team2_form.text   #😀 Kanei text ta last 10 formas
       team2_avg_goals_scored = search_team2_avg_goals_scored.text
       team2_avg_goals_conceded = search_team2_avg_goals_conceded.text
@@ -143,10 +181,20 @@ with open('links.txt','r') as fo:
       team2_chance_to_concede= search_team2_chance_concede.text
       team2_nosymbol_chance_to_concede=team2_chance_to_concede.strip('%')
       team2_int_chance_to_concede=int(team2_nosymbol_chance_to_concede)
-
+      team2_over_1_5_mats= search_team2_over_1_5_mats.text
+      team2_over_1_5_mats_nosymbol= team2_over_1_5_mats.strip('%')  #afairesh symbolou %
+      team2_over_1_5_int= int(team2_over_1_5_mats_nosymbol)
+      team2_over_2_5_mats= search_team2_over_2_5_mats.text
+      team2_over_2_5_mats_nosymbol= team2_over_2_5_mats.strip('%')
+      team2_over_2_5_int= int(team2_over_2_5_mats_nosymbol)
+      team2_btts= search_team2_btts.text
+      team2_btts_nosymbol= team2_btts.strip('%')
+      team2_btts_int= int(team2_btts_nosymbol)
+        
       
       print("")
       print("Away Team: ",team2_name)
+      
       try:
 	      team2_int_world_rank= int(team2_world_rank)
 	      print("World Rank: ",team2_int_world_rank)
@@ -157,6 +205,9 @@ with open('links.txt','r') as fo:
       print(" ---> AVG goals conceded: ",team2_avg_goals_conceded,"goals per match")
       print("Chance to score: ",team2_int_chance_to_score,"%")
       print("Chance to concede: ",team2_int_chance_to_concede,"%")
+      print("Ποσοστό Over 1,5: ",team2_over_1_5_int,"%")
+      print("Ποσοστό Over 2,5: ",team2_over_2_5_int,"%")
+      print("Ποσοστό BTTS: ",team2_btts_int,"%")
       
       
       #print(team2_last10)
@@ -193,11 +244,20 @@ with open('links.txt','r') as fo:
       print(" Συνολικές ήττες",team2_sum7_losses)
       print("")
       print("Facts:")
+      
       if 'L' in team1_7th:
       	print("-->Home Team--> ΉΤΤΑ στο 7ο!")
       	
       if 'L' in team2_7th:
-      	print("-->Away Team--> ΉΤΤΑ στο 7ο!")	
+      	print("-->Away Team--> ΉΤΤΑ στο 7ο!")
+      
+      print("Προϊστορία: Οι γηπεδούχοι μετρούν συνολικά {} νίκες ενώ οι φιλοξενούμενοι {}. Οι ισοπαλίες ήταν {}.".format(history_team1_wins,history_team2_wins,history_draws))
+      
+      if (team1_int_world_rank > team2_int_world_rank+400):
+        print("---> Οι γηπεδούχοι {} έχουν βαρύτερη φανέλα λόγω World Rank !".format(team1_name))
+      if (team1_int_world_rank+400 < team2_int_world_rank):
+        print("---> Οι φιλοξενούμενοι {} έχουν βαρύτερη φανέλα λόγω World Rank !".format(team2_name))  
+        		
       if (team1_sum7_losses == team2_sum7_losses+1 and 'L' in team1_7th and team1_sum_wins==0 and team1_sum_draws==2 and team1_sum_losses==4 and team2_sum_wins==1 and team2_sum_draws==2 and team2_sum_losses==3):
          highlight1_match="Δεδομένη η νίκη της γηπεδούχου ομάδας {}.".format(team1_name)
          
@@ -278,6 +338,9 @@ with open('links.txt','r') as fo:
           
       if (team2_sum5_wins==2 and team2_sum5_draws==1 and team2_sum5_losses==2):
     	  print("---> Η φόρμα5 δείχνει Νίκη ή Ήττα για την ομάδα {}.".format(team2_name))
+    	  
+      if (team2_sum_wins==3 and team2_sum_draws==1 and team2_sum_losses==2):
+       print("---> 3-1-2 για την ομάδα {}. Επικίνδυνο ματς, καλύτερα να το αποφύγουμε.".format(team2_name))  
     
       if (team1_int_avg_scored>2 and team2_int_avg_scored<0.5 and team1_int_avg_conceded<0.5 and team2_int_avg_conceded>2):
       	print("{}-{}. Η γηπεδούχος σκοράρει κατα ριππάς και δέχεται γκολ με το σταγονόμετρο!!! Η φιλοξενούμενη δε βάζει γκολ και τρώει πάνω απο 2 σε κάθε ματς!!!!!".format(team1_name,team2_name)) 
