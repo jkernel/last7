@@ -47,8 +47,8 @@ with open('links.txt','r') as fo:
       team1_last10 = search_team1_form.text   #😀 Kanei text ta last 10 formas
       team1_avg_goals_scored = search_team1_avg_goals_scored.text
       team1_avg_goals_conceded = search_team1_avg_goals_conceded.text
-      team1_int_avg_scored= float(team1_avg_goals_scored)
-      team1_int_avg_conceded= float(team1_avg_goals_conceded)
+      team1_int_avg_scored= int(team1_avg_goals_scored)
+      team1_int_avg_conceded= int(team1_avg_goals_conceded)
       print("")
       print("Home Team: ",team1_name)
       print("---> AVG goals scored: ",team1_avg_goals_scored)
@@ -106,8 +106,8 @@ with open('links.txt','r') as fo:
       team2_last10 = search_team2_form.text   #😀 Kanei text ta last 10 formas
       team2_avg_goals_scored = search_team2_avg_goals_scored.text
       team2_avg_goals_conceded = search_team2_avg_goals_conceded.text
-      team2_int_avg_scored= float(team2_avg_goals_scored)
-      team2_int_avg_conceded= float(team2_avg_goals_conceded)
+      team2_int_avg_scored= int(team2_avg_goals_scored)
+      team2_int_avg_conceded= int(team2_avg_goals_conceded)
       #teams_history = search_teams_history.text
       
       print("")
