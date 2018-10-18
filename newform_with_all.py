@@ -3,6 +3,7 @@ import requests
 from selenium import webdriver
 from selenium.common.exceptions import NoSuchElementException
 import time
+
 ##################################😎 PARE TA LINKS HEAD 2 HEAD #########################################
 
 url_pr="https://www.statarea.com/predictions"
@@ -59,17 +60,19 @@ with open('links.txt','r') as fo:
       team1_int_chance_to_score=int(team1_nosymbol_chance_to_score)
       team1_chance_to_concede= search_team1_chance_concede.text
       team1_nosymbol_chance_to_concede=team1_chance_to_concede.strip('%')
-      team1_int_chance_to_concede=int(team1_nosymbol_chance_to_concede)
-      
-      try:
-	      team1_int_world_rank= int(team1_world_rank)
-      except ValueError:
-      	print("Δεν έχει World Rank")    
+      team1_int_chance_to_concede=int(team1_nosymbol_chance_to_concede)  
       
       
       print("")
       print("Home Team: ",team1_name)
-      print("World Rank: ",team1_int_world_rank)
+      try:
+	      team1_int_world_rank= int(team1_world_rank)
+	      print("World Rank: ",team1_int_world_rank)
+	      
+      except ValueError:
+      	print("Δεν έχει World Rank")
+      	
+      
       print("---> AVG goals scored: ",team1_avg_goals_scored)
       print("---> AVG goals conceded: ",team1_avg_goals_conceded)
       print("Chance to score: ",team1_int_chance_to_score,"%")
@@ -93,10 +96,10 @@ with open('links.txt','r') as fo:
       except:
       	pass
       #print(team1_name)
-      print(" 7=",team1_7th,"6=",team1_6th,"5=",team1_5th,"4=",team1_4th,"3=",team1_3rd,"2=",team1_2nd,"1=",team1_1st,"--->")
-      print(" Φόρμα7:",team1_last7.count('W'),"-",team1_last7.count('D'),"-",team1_last7.count('L'))
-      print(" Φόρμα6:",team1_last6.count('W'),"-",team1_last6.count('D'),"-",team1_last6.count('L'))
-      print(" Φόρμα5:",team1_last5.count('W'),"-",team1_last5.count('D'),"-",team1_last5.count('L'))
+      print(" 7=",team1_7th,"6=",team1_6th,"5=",team1_5th,"4=",team1_4th,"3=",team1_3rd,"2=",team1_2nd,"1=",team1_1st)
+      print(" Φ7:",team1_last7.count('W'),"-",team1_last7.count('D'),"-",team1_last7.count('L'))
+      print(" Φ6:",team1_last6.count('W'),"-",team1_last6.count('D'),"-",team1_last6.count('L'))
+      print(" Φ5:",team1_last5.count('W'),"-",team1_last5.count('D'),"-",team1_last5.count('L'))
     
       team1_wins_draws_losses=team1_last6.count('W'),"-",team1_last6.count('D'),"-",team1_last6.count('L')
       team1_sum_wins=team1_last6.count('W')
@@ -140,16 +143,16 @@ with open('links.txt','r') as fo:
       team2_chance_to_concede= search_team2_chance_concede.text
       team2_nosymbol_chance_to_concede=team2_chance_to_concede.strip('%')
       team2_int_chance_to_concede=int(team2_nosymbol_chance_to_concede)
-      
-      try:
-	      team2_int_world_rank= int(team2_world_rank)
-      except ValueError:
-      	print("Δεν έχει World Rank")
 
       
       print("")
       print("Away Team: ",team2_name)
-      print("World Rank: ",team2_int_world_rank)
+      try:
+	      team2_int_world_rank= int(team2_world_rank)
+	      print("World Rank: ",team2_int_world_rank)
+      except ValueError:
+      	print("Δεν έχει World Rank")
+      
       print(" ---> AVG goals scored: ",team2_avg_goals_scored,"goals per match")
       print(" ---> AVG goals conceded: ",team2_avg_goals_conceded,"goals per match")
       print("Chance to score: ",team2_int_chance_to_score,"%")
@@ -174,9 +177,9 @@ with open('links.txt','r') as fo:
       	pass
       #print(team1_name)
       print(" 7=",team2_7th,"6=",team2_6th,"5=",team2_5th,"4=",team2_4th,"3=",team2_3rd,"2=",team2_2nd,"1=",team2_1st)
-      print(" Φόρμα7:",team2_last7.count('W'),"-",team2_last7.count('D'),"-",team2_last7.count('L'))
-      print(" Φόρμα6:",team2_last6.count('W'),"-",team2_last6.count('D'),"-",team2_last6.count('L'))
-      print(" Φόρμα5:",team2_last5.count('W'),"-",team2_last5.count('D'),"-",team2_last5.count('L'))
+      print(" Φ7:",team2_last7.count('W'),"-",team2_last7.count('D'),"-",team2_last7.count('L'))
+      print(" Φ6:",team2_last6.count('W'),"-",team2_last6.count('D'),"-",team2_last6.count('L'))
+      print(" Φ5:",team2_last5.count('W'),"-",team2_last5.count('D'),"-",team2_last5.count('L'))
     
       team2_wins_draws_losses=team2_last6.count('W'),"-",team2_last6.count('D'),"-",team2_last6.count('L')
       team2_sum_wins=team2_last6.count('W')
@@ -285,8 +288,11 @@ with open('links.txt','r') as fo:
       #if (team1_int_chance_to_score>80 and team2_int_chance_to_score<30 and team1_int_chance_to_concede<30 and team1_int_chance_to_concede>70):
       	#print("{}-{}. Η γηπεδούχος έχει πάνω απο 80% να σκοράρει στο προσεχές ματς και λιγότερο απο 30% να δεχτεί. Η φιλοξενούμενη δε σκοράρει και δέχεται με ευκολία γκολ. Η γηπεδούχοι θα κερδίσουν!!!".format(team1_name,team2_name))
       
-      if (team1_int_chance_to_score>75 and team2_int_chance_to_score<35 and team1_int_chance_to_concede<35 and team1_int_chance_to_concede>70):
-      	print("{}-{}. Η γηπεδούχος έχει πάνω απο 75% να σκοράρει στο προσεχές ματς και λιγότερο απο 35% να δεχτεί. Η φιλοξενούμενη δε σκοράρει και δέχεται με ευκολία γκολ. Η γηπεδούχοι θα κερδίσουν!!!".format(team1_name,team2_name))      
+      if (team1_int_chance_to_score>69 and team2_int_chance_to_score<45 and team1_int_chance_to_concede<45 and team2_int_chance_to_concede>69):
+      	print("{}-{}. Η γηπεδούχος έχει πάνω απο 69% να σκοράρει στο προσεχές ματς και λιγότερο απο 45% να δεχτεί. Η φιλοξενούμενη δε σκοράρει και δέχεται με ευκολία γκολ. Η γηπεδούχοι θα κερδίσουν!!!".format(team1_name,team2_name)) 
+      
+      if (team1_int_chance_to_score>69 and team2_int_chance_to_score>69 and team1_int_chance_to_concede>65 and team2_int_chance_to_concede>65):
+      	print("{}-{}. Το παιχνίδι είναι BTTS και OVER".format(team1_name,team2_name))      
        
       print("")
       print("")

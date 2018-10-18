@@ -40,6 +40,10 @@ with open('links.txt','r') as fo:
 	      search_team1_form = driver.find_element_by_css_selector('div.halfcontainer:nth-of-type(1) div.formastext')
 	      search_team1_avg_goals_scored = driver.find_element_by_css_selector('div.halfcontainer:nth-of-type(1) div.factitem:nth-of-type(5) div.value')
 	      search_team1_avg_goals_conceded = driver.find_element_by_css_selector('div.halfcontainer:nth-of-type(1) div.factitem:nth-of-type(6) div.value')
+	      search_team1_world_rank= driver.find_element_by_css_selector('div.halfcontainer:nth-of-type(1) div.datarow:nth-of-type(5) div.value')
+	      search_team1_chance_score= driver.find_element_by_css_selector('div.halfcontainer:nth-of-type(1) div.factitem:nth-of-type(7) div.value')
+	      search_team1_chance_concede= driver.find_element_by_css_selector('div.halfcontainer:nth-of-type(1) div.factitem:nth-of-type(8) div.value')
+	      
       except NoSuchElementException:
       	print("Element not found")
       team1_name = search_team1_name.text
@@ -47,12 +51,30 @@ with open('links.txt','r') as fo:
       team1_last10 = search_team1_form.text   #😀 Kanei text ta last 10 formas
       team1_avg_goals_scored = search_team1_avg_goals_scored.text
       team1_avg_goals_conceded = search_team1_avg_goals_conceded.text
-      team1_int_avg_scored= int(team1_avg_goals_scored)
-      team1_int_avg_conceded= int(team1_avg_goals_conceded)
+      team1_int_avg_scored= float(team1_avg_goals_scored)
+      team1_int_avg_conceded= float(team1_avg_goals_conceded)
+      team1_world_rank= search_team1_world_rank.text
+      team1_chance_to_score= search_team1_chance_score.text
+      team1_nosymbol_chance_to_score= team1_chance_to_score.strip('%')  #afairesh symbolou %
+      team1_int_chance_to_score=int(team1_nosymbol_chance_to_score)
+      team1_chance_to_concede= search_team1_chance_concede.text
+      team1_nosymbol_chance_to_concede=team1_chance_to_concede.strip('%')
+      team1_int_chance_to_concede=int(team1_nosymbol_chance_to_concede)
+      
+      try:
+	      team1_int_world_rank= int(team1_world_rank)
+      except ValueError:
+      	print("Δεν έχει World Rank")    
+      
+      
       print("")
       print("Home Team: ",team1_name)
+      print("World Rank: ",team1_int_world_rank)
       print("---> AVG goals scored: ",team1_avg_goals_scored)
       print("---> AVG goals conceded: ",team1_avg_goals_conceded)
+      print("Chance to score: ",team1_int_chance_to_score,"%")
+      print("Chance to concede: ",team1_int_chance_to_concede,"%")
+     
       
       
       #print(team1_last10)
@@ -98,7 +120,10 @@ with open('links.txt','r') as fo:
 	      search_team2_form = driver.find_element_by_css_selector('div.halfcontainer:nth-of-type(2) div.formastext')
 	      search_team2_avg_goals_scored = driver.find_element_by_css_selector('div.halfcontainer:nth-of-type(2) div.factitem:nth-of-type(5) div.value')
 	      search_team2_avg_goals_conceded = driver.find_element_by_css_selector('div.halfcontainer:nth-of-type(2) div.factitem:nth-of-type(6) div.value')
-	      #search_teams_history = driver.find_element_by_css_selector('div.matchbtwteams div.matches > div.matchitem:nth-of-type(2) a, div.matchbtwteams div.matches > div.matchitem:nth-of-type(2) div.match div.goals')
+	      search_team2_world_rank= driver.find_element_by_css_selector('div.halfcontainer:nth-of-type(2) div.datarow:nth-of-type(5) div.value')
+	      search_team2_chance_score= driver.find_element_by_css_selector('div.halfcontainer:nth-of-type(2) div.factitem:nth-of-type(7) div.value')
+	      search_team2_chance_concede= driver.find_element_by_css_selector('div.halfcontainer:nth-of-type(2) div.factitem:nth-of-type(8) div.value')
+	      
       except NoSuchElementException:
          print("Element of Away Team not found")   
       team2_name = search_team2_name.text
@@ -106,14 +131,30 @@ with open('links.txt','r') as fo:
       team2_last10 = search_team2_form.text   #😀 Kanei text ta last 10 formas
       team2_avg_goals_scored = search_team2_avg_goals_scored.text
       team2_avg_goals_conceded = search_team2_avg_goals_conceded.text
-      team2_int_avg_scored= int(team2_avg_goals_scored)
-      team2_int_avg_conceded= int(team2_avg_goals_conceded)
-      #teams_history = search_teams_history.text
+      team2_int_avg_scored= float(team2_avg_goals_scored)
+      team2_int_avg_conceded= float(team2_avg_goals_conceded)
+      team2_world_rank= search_team2_world_rank.text
+      
+      team2_chance_to_score= search_team2_chance_score.text
+      team2_nosymbol_chance_to_score= team2_chance_to_score.strip('%')
+      team2_int_chance_to_score=int(team2_nosymbol_chance_to_score)
+      team2_chance_to_concede= search_team2_chance_concede.text
+      team2_nosymbol_chance_to_concede=team2_chance_to_concede.strip('%')
+      team2_int_chance_to_concede=int(team2_nosymbol_chance_to_concede)
+      
+      try:
+	      team2_int_world_rank= int(team2_world_rank)
+      except ValueError:
+      	print("Δεν έχει World Rank")
+
       
       print("")
       print("Away Team: ",team2_name)
+      print("World Rank: ",team2_int_world_rank)
       print(" ---> AVG goals scored: ",team2_avg_goals_scored,"goals per match")
       print(" ---> AVG goals conceded: ",team2_avg_goals_conceded,"goals per match")
+      print("Chance to score: ",team2_int_chance_to_score,"%")
+      print("Chance to concede: ",team2_int_chance_to_concede,"%")
       
       
       #print(team2_last10)
@@ -242,6 +283,12 @@ with open('links.txt','r') as fo:
       if (team1_int_avg_scored>2 and team2_int_avg_scored<0.6 and team1_int_avg_conceded<0.7 and team2_int_avg_conceded>1.7):
       	print("{}-{}. Η γηπεδούχος σκοράρει πανω απο 2 γκολ σε κάθε ματς και δέχεται γκολ κάτω από 0.7. Η φιλοξενούμενη βάζει γκολ <0.7 και τρώει πάνω απο 2 σε κάθε ματς".format(team1_name,team2_name))   
       
+      #if (team1_int_chance_to_score>80 and team2_int_chance_to_score<30 and team1_int_chance_to_concede<30 and team1_int_chance_to_concede>70):
+      	#print("{}-{}. Η γηπεδούχος έχει πάνω απο 80% να σκοράρει στο προσεχές ματς και λιγότερο απο 30% να δεχτεί. Η φιλοξενούμενη δε σκοράρει και δέχεται με ευκολία γκολ. Η γηπεδούχοι θα κερδίσουν!!!".format(team1_name,team2_name))
+      
+      if (team1_int_chance_to_score>75 and team2_int_chance_to_score<35 and team1_int_chance_to_concede<35 and team1_int_chance_to_concede>70):
+      	print("{}-{}. Η γηπεδούχος έχει πάνω απο 75% να σκοράρει στο προσεχές ματς και λιγότερο απο 35% να δεχτεί. Η φιλοξενούμενη δε σκοράρει και δέχεται με ευκολία γκολ. Η γηπεδούχοι θα κερδίσουν!!!".format(team1_name,team2_name))      
+       
       print("")
       print("")
       #print("Τελευταίο ματς:",teams_history)
