@@ -4,22 +4,6 @@ from selenium import webdriver
 from selenium.common.exceptions import NoSuchElementException
 import time
 
-##################################😎 PARE TA LINKS HEAD 2 HEAD #########################################
-
-url_pr="https://www.statarea.com/predictions"
-driver=webdriver.PhantomJS('/home/jkernel/Desktop/python books/phantomjs/bin/phantomjs')
-driver.get(url_pr)
-find_team1 = driver.find_elements_by_css_selector('div.hostteam div.name a')
-
-#ANOIGEI ARXEIO KAI TYPWNEI TO PROGRAMMA TWN AGWNVN 
-fo=open('links.txt','w')
-for element in find_team1:
-
-   data=element.get_attribute("href")
-   print(data,file=fo)
-   
-fo.close()
-driver.quit()
 
 ###############################😎 Split LINES IN .TXT FILE & opening WEBDRIVER at the 1st Url #####################################################
 
@@ -33,6 +17,7 @@ with open('links.txt','r') as fo:
       from selenium import webdriver
       driver=webdriver.PhantomJS('/home/jkernel/Desktop/python books/phantomjs/bin/phantomjs')
       driver.get(url)
+      time.sleep(3)
       
  ##################################😎 HOME TEAM CONFIG ###################################################
       try:
@@ -49,9 +34,7 @@ with open('links.txt','r') as fo:
 	      search_team1_btts= driver.find_element_by_css_selector('div.halfcontainer:nth-of-type(1) div.barchart:nth-of-type(17) div.barrow:nth-of-type(1) div.bar')
 	      
 	      search_game_datetime= driver.find_element_by_css_selector('div.halfcontainer:nth-of-type(1) div.starttime')
-	      search_history_team1_wins= driver.find_element_by_css_selector('div.facts div.datarow:nth-of-type(3) div.value')
-	      search_history_draws= driver.find_element_by_css_selector('div.facts div.datarow:nth-of-type(4) div.value')
-	      search_history_team2_wins= driver.find_element_by_css_selector('div.facts div.datarow:nth-of-type(5) div.value')
+
 
 	      
 	      
@@ -85,21 +68,25 @@ with open('links.txt','r') as fo:
       team1_btts_nosymbol= team1_btts.strip('%')
       team1_btts_int= int(team1_btts_nosymbol)
       
-      history_team1_wins= search_history_team1_wins.text
-      history_draws= search_history_draws.text
-      history_team2_wins= search_history_team2_wins.text
-        
+      try:
+      	search_history_team1_wins= driver.find_element_by_css_selector('div.facts div.datarow:nth-of-type(3) div.value')
+      	search_history_draws= driver.find_element_by_css_selector('div.facts div.datarow:nth-of-type(4) div.value')
+      	search_history_team2_wins= driver.find_element_by_css_selector('div.facts div.datarow:nth-of-type(5) div.value')
+      	history_team1_wins= search_history_team1_wins.text
+      	history_draws= search_history_draws.text
+      	history_team2_wins= search_history_team2_wins.text
+      except NoSuchElementException:
+      	print("Element of History not found")  
       
       
-      print("")
+      print("Χώρα: ",team1_country)
       print("Έναρξη: ",game_datetime)
       print("")
       print("Home Team: ",team1_name)
       
       try:
 	      team1_int_world_rank= int(team1_world_rank)
-	      print("World Rank: ",team1_int_world_rank)
-	      
+	      print("World Rank: ",team1_int_world_rank)	      
       except ValueError:
       	print("Δεν έχει World Rank")
       	
@@ -127,10 +114,11 @@ with open('links.txt','r') as fo:
 	      team1_3rd=team1_last7[4]
 	      team1_2nd=team1_last7[5]
 	      team1_1st=team1_last7[6]
+	      print(" 7=",team1_7th,"6=",team1_6th,"5=",team1_5th,"4=",team1_4th,"3=",team1_3rd,"2=",team1_2nd,"1=",team1_1st)
       except:
       	pass
       #print(team1_name)
-      print(" 7=",team1_7th,"6=",team1_6th,"5=",team1_5th,"4=",team1_4th,"3=",team1_3rd,"2=",team1_2nd,"1=",team1_1st)
+      
       print(" Φ7:",team1_last7.count('W'),"-",team1_last7.count('D'),"-",team1_last7.count('L'))
       print(" Φ6:",team1_last6.count('W'),"-",team1_last6.count('D'),"-",team1_last6.count('L'))
       print(" Φ5:",team1_last5.count('W'),"-",team1_last5.count('D'),"-",team1_last5.count('L'))
@@ -192,7 +180,7 @@ with open('links.txt','r') as fo:
       team2_btts_int= int(team2_btts_nosymbol)
         
       
-      print("")
+      print("Χώρα: ",team2_country)
       print("Away Team: ",team2_name)
       
       try:
@@ -205,7 +193,12 @@ with open('links.txt','r') as fo:
       print(" ---> AVG goals conceded: ",team2_avg_goals_conceded,"goals per match")
       print("Chance to score: ",team2_int_chance_to_score,"%")
       print("Chance to concede: ",team2_int_chance_to_concede,"%")
-      print("Ποσοστό Over 1,5: ",team2_over_1_5_int,"%")
+      try:
+	      team2_int_world_rank= int(team2_world_rank)
+	      print("Ποσοστό Over 1,5: ",team2_over_1_5_int,"%")
+      except ValueError:
+      	print("Δεν έχει World Rank")
+      
       print("Ποσοστό Over 2,5: ",team2_over_2_5_int,"%")
       print("Ποσοστό BTTS: ",team2_btts_int,"%")
       
@@ -250,13 +243,19 @@ with open('links.txt','r') as fo:
       	
       if 'L' in team2_7th:
       	print("-->Away Team--> ΉΤΤΑ στο 7ο!")
-      
-      print("Προϊστορία: Οι γηπεδούχοι μετρούν συνολικά {} νίκες ενώ οι φιλοξενούμενοι {}. Οι ισοπαλίες ήταν {}.".format(history_team1_wins,history_team2_wins,history_draws))
-      
-      if (team1_int_world_rank > team2_int_world_rank+400):
-        print("---> Οι γηπεδούχοι {} έχουν βαρύτερη φανέλα λόγω World Rank !".format(team1_name))
-      if (team1_int_world_rank+400 < team2_int_world_rank):
-        print("---> Οι φιλοξενούμενοι {} έχουν βαρύτερη φανέλα λόγω World Rank !".format(team2_name))  
+      try:
+      	print("Προϊστορία: Οι γηπεδούχοι μετρούν συνολικά {} νίκες ενώ οι φιλοξενούμενοι {}. Οι ισοπαλίες ήταν {}.".format(history_team1_wins,history_team2_wins,history_draws))
+      except NameError:
+      	print ("Δεν έχουν Προϊστορία")
+      	
+      	
+      try:	
+	      if (team1_int_world_rank > team2_int_world_rank+400):
+	        print("---> Οι γηπεδούχοι {} έχουν βαρύτερη φανέλα λόγω World Rank !".format(team1_name))
+	      if (team1_int_world_rank+400 < team2_int_world_rank):
+	        print("---> Οι φιλοξενούμενοι {} έχουν βαρύτερη φανέλα λόγω World Rank !".format(team2_name))  
+      except NameError:
+      	print("Κάποια ομάδα δεν έχει World Rank.")
         		
       if (team1_sum7_losses == team2_sum7_losses+1 and 'L' in team1_7th and team1_sum_wins==0 and team1_sum_draws==2 and team1_sum_losses==4 and team2_sum_wins==1 and team2_sum_draws==2 and team2_sum_losses==3):
          highlight1_match="Δεδομένη η νίκη της γηπεδούχου ομάδας {}.".format(team1_name)

@@ -181,9 +181,7 @@ with open('links.txt','r') as fo:
       team2_chance_to_concede= search_team2_chance_concede.text
       team2_nosymbol_chance_to_concede=team2_chance_to_concede.strip('%')
       team2_int_chance_to_concede=int(team2_nosymbol_chance_to_concede)
-      team2_over_1_5_mats= search_team2_over_1_5_mats.text
-      team2_over_1_5_mats_nosymbol= team2_over_1_5_mats.strip('%')  #afairesh symbolou %
-      team2_over_1_5_int= int(team2_over_1_5_mats_nosymbol)
+      
       team2_over_2_5_mats= search_team2_over_2_5_mats.text
       team2_over_2_5_mats_nosymbol= team2_over_2_5_mats.strip('%')
       team2_over_2_5_int= int(team2_over_2_5_mats_nosymbol)
@@ -205,7 +203,14 @@ with open('links.txt','r') as fo:
       print(" ---> AVG goals conceded: ",team2_avg_goals_conceded,"goals per match")
       print("Chance to score: ",team2_int_chance_to_score,"%")
       print("Chance to concede: ",team2_int_chance_to_concede,"%")
-      print("Ποσοστό Over 1,5: ",team2_over_1_5_int,"%")
+      try:
+	      team2_over_1_5_mats= search_team2_over_1_5_mats.text
+         team2_over_1_5_mats_nosymbol= team2_over_1_5_mats.strip('%')  #afairesh symbolou %
+         team2_over_1_5_int= int(team2_over_1_5_mats_nosymbol)
+	      print("Ποσοστό Over 1,5: ",team2_over_1_5_int,"%")
+      except ValueError:
+      	print("Δεν έχει Ποσοστό Over 1,5")
+      
       print("Ποσοστό Over 2,5: ",team2_over_2_5_int,"%")
       print("Ποσοστό BTTS: ",team2_btts_int,"%")
       
