@@ -5,7 +5,7 @@ from selenium.common.exceptions import NoSuchElementException
 import time
 ##################################😎 PARE TA LINKS HEAD 2 HEAD #########################################
 
-url_pr="https://www.statarea.com/predictions/date/2018-10-21/starttime"
+url_pr="https://www.statarea.com/predictions/date/today/starttime"
 driver=webdriver.PhantomJS('/home/jkernel/Desktop/python books/phantomjs/bin/phantomjs')
 driver.get(url_pr)
 find_team1 = driver.find_elements_by_css_selector('div.hostteam div.name a')
@@ -157,6 +157,8 @@ with open('links.txt','r') as fo:
       team1_sum5_draws=team1_last5.count('D')
       team1_sum5_losses=team1_last5.count('L')
  
+      team1_sum7_wins=team1_last7.count('W')
+      team1_sum7_draws=team1_last7.count('D')      
       team1_sum7_losses=team1_last7.count('L')    
       print(" Συνολικές ήττες",team1_sum7_losses)
       
@@ -267,6 +269,8 @@ with open('links.txt','r') as fo:
       team2_sum5_draws=team2_last5.count('D')
       team2_sum5_losses=team2_last5.count('L')
  
+      team2_sum7_wins=team2_last7.count('W')
+      team2_sum7_draws=team2_last7.count('D')
       team2_sum7_losses=team2_last7.count('L')    
       print(" Συνολικές ήττες",team2_sum7_losses)
       print("")
@@ -291,17 +295,32 @@ with open('links.txt','r') as fo:
       except NameError:
       	print("Κάποια ομάδα δεν έχουν World Rank.")
         		
-      if (team1_sum7_losses == team2_sum7_losses+1 and 'L' in team1_7th and team1_sum6_wins==0 and team1_sum6_draws==2 and team1_sum6_losses==4 and team2_sum6_wins==1 and team2_sum6_draws==2 and team2_sum6_losses==3):
-         highlight1_match="Δεδομένη η νίκη της γηπεδούχου ομάδας {}.".format(team1_name)
+      if (team1_sum6_wins==0 and team1_sum6_draws==2 and team1_sum6_losses==4 and team2_sum6_wins==1 and team2_sum6_draws==2 and team2_sum6_losses==3):
+         print("Κριτήριο 024+123!!!: Νίκη της γηπεδούχου ομάδας {}.".format(team1_name))
          
-      if (team1_sum7_losses == team2_sum7_losses+1 and 'L' in team1_7th and team1_sum6_wins==3 and team1_sum6_draws==2 and team1_sum6_losses==1 and team2_sum6_wins==4 and team2_sum6_draws==2 and team2_sum6_losses==0):
-         highlight2_match="Δεδομένη η νίκη της γηπεδούχου ομάδας {}.".format(team1_name)
+      if (team1_sum6_wins==3 and team1_sum6_draws==2 and team1_sum6_losses==1 and team2_sum6_wins==4 and team2_sum6_draws==2 and team2_sum6_losses==0):
+         print("Κριτήριο 321+420!!!: Νίκη της γηπεδούχου ομάδας {}.".format(team1_name))
          
-      if (team1_sum7_losses == team2_sum7_losses+1 and 'L' in team1_7th and team1_sum6_wins==1 and team1_sum6_draws==1 and team1_sum6_losses==4 and team2_sum6_wins==1 and team2_sum6_draws==2 and team2_sum6_losses==3):
-         highlight3_match= ("Δεδομένη η νίκη της γηπεδούχου ομάδας {}.".format(team1_name))
+      if (team1_sum6_wins==2 and team1_sum6_draws==1 and team1_sum6_losses==3 and 'L' in team1_1st and 'L' in team1_2nd and 'L' in team1_3rd):
+      	print("Οι γηπεδούχοι έχουν 213 με 3 συνεχόμενες ήττες. Πάνε για θετικό αποτέλεσμα.")
+      
+      if (team1_sum6_wins==1 and team1_sum6_draws==2 and team1_sum6_losses==3 and 'L' in team1_1st and 'L' in team1_2nd and 'L' in team1_3rd):
+         highlight3_match= "Οι γηπεδούχοι έχουν 123 με 3 συνεχόμενες ήττες. Πάνε για θετικό αποτέλεσμα."
+      
+      if (team1_sum6_wins==team2_sum6_wins-1 and team1_sum6_draws==team2_sum6_draws and team1_sum6_losses== team2_sum6_losses+1 and 'L' in team1_7th):
+         print("Οι γηπεδούχοι με νίκη ισορροπούν τη φόρμα πλήρως{}.")
+      
+      if (team1_sum6_wins==team2_sum6_wins-1 and team1_sum6_draws==team2_sum6_draws and team1_sum6_losses== team2_sum6_losses+1 and 'L' in team1_7th):
+         print("Οι γηπεδούχοι με νίκη ισορροπούν τη φόρμα πλήρως{}.")
+      
+      if (team1_sum6_wins==team2_sum6_wins and team1_sum6_draws==team2_sum6_draws and team1_sum7_losses== team2_sum7_losses+1 ):
+         print("Οι γηπεδούχοι με νίκη ισορροπούν τη φόρμα πλήρως{}.")
+      
+      if (team1_sum6_wins==1 and team1_sum6_draws==1 and team1_sum6_losses==4 and team2_sum6_wins==1 and team2_sum6_draws==2 and team2_sum6_losses==3):
+         print("Κριτήριο 114+123!!!: Νίκη της γηπεδούχου ομάδας {}.".format(team1_name))
          
-      if (team1_sum7_losses == team2_sum7_losses+1 and 'L' in team1_7th and team1_sum6_wins==3 and team1_sum6_draws==2 and team1_sum6_losses==1 and team2_sum6_wins==4 and team2_sum6_draws==2 and team2_sum6_losses==0):
-         highlight4_match= ("Δεδομένη η νίκη της γηπεδούχου ομάδας {}.".format(team1_name))         
+      if (team1_sum7_losses == team2_sum7_losses+1 and 'L' in team1_7th and 'D' in team2_7th and team1_sum6_wins==3 and team1_sum6_draws==2 and team1_sum6_losses==1 and team2_sum6_wins==4 and team2_sum6_draws==2 and team2_sum6_losses==0):
+         print("Δεδομένη η νίκη της γηπεδούχου ομάδας {}.".format(team1_name))         
       
       if (team1_sum7_losses == team2_sum7_losses+1):
         print("---> Οι γηπεδούχοι {} έχουν μια ήττα παραπάνω! Πάει για νίκη!".format(team1_name))
@@ -378,6 +397,7 @@ with open('links.txt','r') as fo:
         print("---> Κριτήριο βιβλίου!!!: Οι γηπεδούχοι έχουν 4-0-2 & οι φιλοξενούμενοι 4-0-2!!! ΙΣΟΠΑΛΙΑ.")
         
           
+      
       if (team1_sum5_wins==2 and team1_sum5_draws==1 and team1_sum5_losses==2):
     	  print("---> Φόρμα5 γηπεδούχων: 1Χ.")
       if (team2_sum5_wins==2 and team2_sum5_draws==2 and team2_sum5_losses==1):
@@ -408,6 +428,11 @@ with open('links.txt','r') as fo:
       
       if (team1_int_chance_to_score>69 and team2_int_chance_to_score<45 and team1_int_chance_to_concede<45 and team2_int_chance_to_concede>69):
       	print("{}-{}. Οι γηπεδούχοι έχουν πάνω απο 69% να σκοράρουν στο προσεχές ματς και λιγότερο απο 45% να δεχτούν. Οι φιλοξενούμενοι δε σκοράρουν και δέχεται με ευκολία γκολ. Η γηπεδούχοι θα κερδίσουν!!!".format(team1_name,team2_name)) 
+      
+      if (team1_int_chance_to_score<40 and team2_int_chance_to_score<40 and team1_int_chance_to_concede<40 and team2_int_chance_to_concede<40 and team1_last10_failtoscore_int>6 and team2_last10_failtoscore_int>6 and team1_last10_cleansheet_int>4 and team2_last10_cleansheet_int>4 and team1_int_avg_scored<1 and team2_int_avg_scored<1):
+      	print("{}-{}. ΔΕ ΘΑ ΜΠΕΙ ΓΚΟΛ !!!!!!".format(team1_name,team2_name))
+      if (team1_int_chance_to_score<50 and team2_int_chance_to_score<50 and team1_int_chance_to_concede<50 and team2_int_chance_to_concede<50 and team1_last10_failtoscore_int>5 and team2_last10_failtoscore_int>5 and team1_last10_cleansheet_int>5 and team2_last10_cleansheet_int>5 and team1_int_avg_scored<1 and team2_int_avg_scored<1):
+      	print("{}-{}. UNDERάκι !!!!!!".format(team1_name,team2_name))
       
       if (team1_int_chance_to_score>69 and team2_int_chance_to_score>69 and team1_int_chance_to_concede>65 and team2_int_chance_to_concede>65 and team1_last10_failtoscore_int<3 and team2_last10_failtoscore_int<3 and team1_last10_cleansheet_int<3 and team2_last10_cleansheet_int<3 and team1_int_avg_scored>2 and team2_int_avg_scored>1.5):
       	print("{}-{}. Το παιχνίδι είναι BTTS και OVER !!!!!!".format(team1_name,team2_name))      
