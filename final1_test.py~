@@ -378,11 +378,11 @@ with open('links.txt','r') as fo:
       if (team1_sum6_losses==0 ):
         print("---> Οι γηπεδούχοι έχουν 0 στις Ήττες!  Ίσως 2πλό." )	
       if (team2_sum6_wins==0 ):
-        print("---> Οι γηπεδούχοι έχουν 0 στις Νίκες!  Ίσως διπλό." )      
+        print("---> Οι φιλοξενούμενοι έχουν 0 στις Νίκες!  Ίσως διπλό." )      
       if (team2_sum6_draws==0 ):
-        print("---> Οι γηπεδούχοι έχουν 0 στις Ισοπαλίες!  Ίσως Χ." )      
+        print("---> Οι φιλοξενούμενοι έχουν 0 στις Ισοπαλίες!  Ίσως Χ." )      
       if (team2_sum6_losses==0 ):
-        print("---> Οι γηπεδούχοι έχουν 0 στις Ήττες!  Ίσως άσσος." )
+        print("---> Οι φιλοξενούμενοι έχουν 0 στις Ήττες!  Ίσως άσσος." )
       
       
       
@@ -398,15 +398,15 @@ with open('links.txt','r') as fo:
         
           
       
-      if (team1_sum5_wins==2 and team1_sum5_draws==1 and team1_sum5_losses==2):
-    	  print("---> Φόρμα5 γηπεδούχων: 1Χ.")
+      if (team1_sum5_wins==2 and team1_sum5_draws==2 and team1_sum5_losses==1):
+    	  print("---> Φόρμα5 γηπεδούχων: 1X.")
       if (team2_sum5_wins==2 and team2_sum5_draws==2 and team2_sum5_losses==1):
-        print("---> Φόρμα5 φιλοξενούμενων: 1Χ.")
+        print("---> Φόρμα5 φιλοξενούμενων: 2Χ.")
         
       if (team1_sum5_wins==1 and team1_sum5_draws==2 and team1_sum5_losses==2):
         print("---> Φόρμα5 γηπεδούχων: Χ2.")
       if (team2_sum5_wins==1 and team2_sum5_draws==2 and team2_sum5_losses==2):
-        print("---> Φόρμα5 φιλοξενούμενων: Χ2.")              
+        print("---> Φόρμα5 φιλοξενούμενων: 1X.")              
           
       if (team1_sum5_wins==2 and team1_sum5_draws==1 and team1_sum5_losses==2):
     	  print("---> Η φόρμα5 γηπεδούχων: 12.")

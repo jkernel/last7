@@ -4,7 +4,7 @@ from selenium import webdriver
 import time
 ##################################😎 PARE TA LINKS HEAD 2 HEAD #########################################
 
-url_pr="https://www.statarea.com/predictions/date/today/starttime"
+url_pr="https://www.statarea.com/predictions"
 driver=webdriver.PhantomJS('/home/jkernel/Desktop/python books/phantomjs/bin/phantomjs')
 driver.get(url_pr)
 find_team1 = driver.find_elements_by_css_selector('div.hostteam div.name a')
