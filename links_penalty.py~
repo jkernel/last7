@@ -4,17 +4,22 @@ from selenium import webdriver
 import time
 ##################################😎 PARE TA LINKS HEAD 2 HEAD #########################################
 
-url_pr="https://www.statarea.com/predictions/date/today/starttime"
-driver=webdriver.PhantomJS('/home/jkernel/Desktop/python books/phantomjs/bin/phantomjs',service_args=['--load-images=no'])
-driver.get(url_pr)
-find_team1 = driver.find_elements_by_css_selector('div.match:nth-of-type(n+3) div.hostteam a.goals, div#\38 75207.match div.hostteam div.goals')
 
-#ANOIGEI ARXEIO KAI TYPWNEI TO PROGRAMMA TWN AGWNVN 
-fo=open('links-penalty.txt','w')
-for element in find_team1:
+with open("links.txt") as f:
+    with open("links-penalty.txt", "w") as f1:
+        for line in f:
+        	f1.write(line)
 
-   data=element.get_attribute("href")
-   print(data,file=fo)
-   
-fo.close()
-driver.quit()
+year= input("Year:")
+year1=str(year)
+month= input("Month:")
+month1=str(month)
+day= input("Day:")
+day1=str(day)
+slash='/'
+with open("links-penalty.txt", "r") as f2:
+	with open("links_penalty1.txt", "w") as f3:
+		for line in f2:
+			newline=line.replace("compare","match")
+			newline1=newline.replace("teams","info")
+			f3.write("{}{}{}-{}-{}".format(newline,slash,year1,month1,day1)

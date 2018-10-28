@@ -1,0 +1,22 @@
+import sys
+import requests
+from selenium import webdriver
+import time
+##################################😎 PARE TA LINKS HEAD 2 HEAD #########################################
+
+
+with open("links.txt") as f:
+    with open("links-penalty.txt", "w") as f1:
+        for line in f:
+        	f1.write(line)
+
+
+with open("links-penalty.txt", "r") as f2:
+	with open("links-penalty1.txt", "w") as f1:
+	for line in f2:
+		newline=line.replace("compare","match")
+		newline1=newline.replace("teams","info")
+		print(newline,file=f2)
+	
+
+

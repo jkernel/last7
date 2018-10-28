@@ -15,7 +15,7 @@ with open('links.txt','r') as fo:
       
       url=line
       from selenium import webdriver
-      driver=webdriver.PhantomJS('/home/jkernel/Desktop/python books/phantomjs/bin/phantomjs',service_args=['--load-images=no'])
+      driver=webdriver.PhantomJS('/home/jkernel/Desktop/python books/phantomjs/bin/phantomjs',service_args=['--load-images=no','--disk-cache=true'])
       driver.get(url)
       time.sleep(5)
       
@@ -549,10 +549,26 @@ with open('links.txt','r') as fo:
       elif (team2_int_avg_conceded>team1_int_avg_conceded+0.7):
       	print("Προσοχή οι φιλοξενούμενοι ΤΡΩΝΕ σχεδόν 1 γκολ ΠΑΡΑΠΑΝΩ από τους γηπεδούχους. Προβάδισμα στο ΑΣΣΟ.")
       
-      
+      if(team1_last10_cleansheet_int>5):
+      	print("--> Οι γηπεδούχοι ΑΜΥΝΟΝΤΑΙ καλά. Πάνω από 5 Clean Sheets στα 10 τελευταία ματς.")
+      if(team2_last10_cleansheet_int>5):
+      	print("--> Οι φιλοξενούμενοι ΑΜΥΝΟΝΤΑΙ καλά. Πάνω από 5 Clean Sheets στα 10 τελευταία ματς.")
+      if(team1_last10_failtoscore_int>5):
+      	print("--> Προσοχή: Fail2Sore, οι γηπεδούχοι ΑΠΕΤΥΧΑΝ να σκοράρουν σε πάνω από 5/10 ματς!!! ΔΕΝ ΒΑΖΟΥΝ ΓΚΟΛ..")
+      if(team2_last10_failtoscore_int>5):
+      	print("--> Προσοχή: Fail2Sore, οι φιλοξενούμενοι ΑΠΕΤΥΧΑΝ να σκοράρουν σε πάνω από 5/10 ματς!!! ΔΕΝ ΒΑΖΟΥΝ ΓΚΟΛ..")
       if (team1_int_chance_to_score>69 and team2_int_chance_to_score>69 and team1_int_chance_to_concede>65 and team2_int_chance_to_concede>65 and team1_last10_failtoscore_int<3 and team2_last10_failtoscore_int<3 and team1_last10_cleansheet_int<3 and team2_last10_cleansheet_int<3 and team1_int_avg_scored>2 and team2_int_avg_scored>1.5):
       	print("{}-{}. Το παιχνίδι είναι BTTS και OVER !!!!!!".format(team1_name,team2_name))      
-       
+      
+      if(team1_last10_failtoscore_int<3 and team1_last10_cleansheet_int>5 and team1_int_avg_scored>1.6 and team1_int_avg_scored<0.8):
+      	print("Οι γηπεδούχοι βρίσκονται σε άριστη κατάσταση!!! Αξίζουν εμπιστοσύνη. Άσσος.")
+      if(team2_last10_failtoscore_int<3 and team2_last10_cleansheet_int>5 and team2_int_avg_scored>1.6 and team2_int_avg_scored<0.8):
+      	print("Οι Φιλοξενούμενοι βρίσκονται σε άριστη κατάσταση!!! Αξίζουν εμπιστοσύνη. Διπλό."
+      
+      if(team1_last10_cleansheet_int>5 and team2_last10_cleansheet_int<3 and team1_last10_failtoscore_int<3 and team2_last10_failtoscore_int>4):
+      	print("CleanSheet & Fail2Sore, μεγάλες διαφορές ΥΠΕΡ των Γηπεδούχων. ΆΣΣΟΣ")
+      
+      
       print("")
       print("")
       
