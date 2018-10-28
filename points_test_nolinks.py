@@ -702,7 +702,7 @@ with open('links.txt','r') as fo:
 				points_diplo-=8
 				points_diplo+=8
       
-      
+      print("1:{},X:{},2:{}".format(points_assos,points_draw,points_diplo))
       print("")
       print("")
       
