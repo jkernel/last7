@@ -295,12 +295,12 @@ with open('links.txt','r') as fo:
       	
       	print("---> Προϊστορία: {}-{}-{}.".format(history_team1_wins,history_draws,history_team2_wins))
       	
-      	if (history_team1_wins_int>history_team2_wins_int+5):
-      		print("Οι γηπεδούχοι {} υπερτερούν αρκετά στην Προϊστορία".format(team1_name))
+      	if (history_team1_wins_int>history_team2_wins_int+5 and history_team1_wins_int>history_draws_int+5):
+      		print("H Προϊστορία δείχνει ΑΣΣΟ.")
       		points_assos= 10
       	
-      	elif (history_team1_wins_int+5<history_team2_wins_int):
-      		print("Οι φιλοξενούμενοι {} υπερτερούν αρκετά στην Προϊστορία".format(team2_name))
+      	elif (history_team1_wins_int+5<history_team2_wins_int and history_team2_wins_int> history_draws_int+5):
+      		print("Η Προϊστορία δείχνει ΔΙΠΛΟ")
       		points_diplo=8
       	elif ((history_draws_int> history_team1_wins_int+3) and (history_draws_int> history_team2_wins_int+3) ):
       		print("Η Προϊστορία δείχνει Ισοπαλία")
@@ -505,18 +505,21 @@ with open('links.txt','r') as fo:
 	
       if (team2_sum6_wins==1 and team2_sum6_draws==2 and team2_sum6_losses==3):
         print("---> Οι φιλοξενούμενοι έχουν 1-2-3!!! Θα τα βρούν σκούρα." )
+	points_diplo-=5
 	
       
       if (team1_sum6_wins==0 ):
         print("---> Οι γηπεδούχοι έχουν 0 στις Νίκες!  Ίσως άσσος." )      
       if (team1_sum6_draws==0 ):
-        print("---> Οι γηπεδούχοι έχουν 0 στις Ισοπαλίες!  Ίσως Χ." )      
+        print("---> Οι γηπεδούχοι έχουν 0 στις Ισοπαλίες!  Ίσως Χ." )
+	points_draw+=3
       if (team1_sum6_losses==0 ):
         print("---> Οι γηπεδούχοι έχουν 0 στις Ήττες!  Ίσως 2πλό." )	
       if (team2_sum6_wins==0 ):
         print("---> Οι φιλοξενούμενοι έχουν 0 στις Νίκες!  Ίσως διπλό." )      
       if (team2_sum6_draws==0 ):
-        print("---> Οι φιλοξενούμενοι έχουν 0 στις Ισοπαλίες!  Ίσως Χ." )      
+        print("---> Οι φιλοξενούμενοι έχουν 0 στις Ισοπαλίες!  Ίσως Χ." )
+	points_draw+=3
       if (team2_sum6_losses==0 ):
         print("---> Οι φιλοξενούμενοι έχουν 0 στις Ήττες!  Ίσως άσσος." )
       
@@ -524,46 +527,70 @@ with open('links.txt','r') as fo:
       
 	
       if (team1_sum6_wins==0 and team1_sum6_draws==2 and team1_sum6_losses==4 and team2_sum6_wins==1 and team2_sum6_draws==2 and team2_sum6_losses==3 ):
-        print("---> Κριτήριο βιβλίου!!!: Οι γηπεδούχοι έχουν  0 νίκες & οι φιλοξενούμενοι 1-2-3!!! Νίκη για {}.".format(team1_name))	
+        print("---> Κριτήριο βιβλίου!!!: Οι γηπεδούχοι έχουν  0 νίκες & οι φιλοξενούμενοι 1-2-3!!! Νίκη για {}.".format(team1_name))
+	points_assos+=6
 	
       if (team1_sum6_wins==3 and team1_sum6_draws==2 and team1_sum6_losses==1 and team2_sum6_wins==4 and team2_sum6_draws==2 and team2_sum6_losses==0 ):
-        print("---> Κριτήριο βιβλίου!!!: Οι γηπεδούχοι έχουν 3-2-1 & οι φιλοξενούμενοι 0 ήττες!!!  {} will win." .format(team1_name))	
+        print("---> Κριτήριο βιβλίου!!!: Οι γηπεδούχοι έχουν 3-2-1 & οι φιλοξενούμενοι 0 ήττες!!!  {} will win." .format(team1_name))
+	points_assos+=6
 	
       if (team1_sum6_wins==4 and team1_sum6_draws==0 and team1_sum6_losses==2 and team2_sum6_wins==4 and team2_sum6_draws==0 and team2_sum6_losses==2 ):
         print("---> Κριτήριο βιβλίου!!!: Οι γηπεδούχοι έχουν 4-0-2 & οι φιλοξενούμενοι 4-0-2!!! ΙΣΟΠΑΛΙΑ.")
+	points_draw+=6
         
           
       
       if (team1_sum5_wins==2 and team1_sum5_draws==2 and team1_sum5_losses==1):
-    	  print("---> Φόρμα5 γηπεδούχων: 1X.")
+				print("---> Φόρμα5 γηπεδούχων: 1X.")
+				points_assos+=3
+				points_draw+=3
+	
       if (team2_sum5_wins==2 and team2_sum5_draws==2 and team2_sum5_losses==1):
         print("---> Φόρμα5 φιλοξενούμενων: 2Χ.")
+				points_diplo+=3
+				points_draw+=3
         
       if (team1_sum5_wins==1 and team1_sum5_draws==2 and team1_sum5_losses==2):
         print("---> Φόρμα5 γηπεδούχων: Χ2.")
+				points_diplo+=3
+				points_draw+=3
       if (team2_sum5_wins==1 and team2_sum5_draws==2 and team2_sum5_losses==2):
-        print("---> Φόρμα5 φιλοξενούμενων: 1X.")              
+        print("---> Φόρμα5 φιλοξενούμενων: 1X.")
+				points_assos+=3
+				points_draw+=3
           
       if (team1_sum5_wins==2 and team1_sum5_draws==1 and team1_sum5_losses==2):
     	  print("---> Η φόρμα5 γηπεδούχων: 12.")
+				points_assos+=3
+				points_diplo+=3
       if (team2_sum5_wins==2 and team2_sum5_draws==1 and team2_sum5_losses==2):
-    	  print("---> Η φόρμα5 φιλοξενούμενων: 12.")    	  
+    	  print("---> Η φόρμα5 φιλοξενούμενων: 12.")
+				points_assos+=3
+				points_diplo+=3
     	  
     	  
       if (team2_sum6_wins==3 and team2_sum6_draws==1 and team2_sum6_losses==2):
-       print("---> 3-1-2 για την ομάδα {}. Επικίνδυνο ματς, καλύτερα να το αποφύγουμε.".format(team2_name))  
+				print("---> 3-1-2 για την ομάδα {}. Επικίνδυνο ματς, καλύτερα να το αποφύγουμε.".format(team2_name))
+				points_diplo+=5
+			
     
       if (team1_int_avg_scored>2 and team2_int_avg_scored<0.5 and team1_int_avg_conceded<0.5 and team2_int_avg_conceded>2):
-      	print("{}-{}. Οι γηπεδούχοι σκοράρουν κατα ριππάς και δέχεται γκολ με το σταγονόμετρο!!! Οι φιλοξενούμενοι δεν σκοράρουν και δέχονται πάνω απο 2 σε κάθε ματς!!!!!".format(team1_name,team2_name)) 
+      	points_diplo-=5
+				points_assos+=7
+				print("{}-{}. Οι γηπεδούχοι σκοράρουν κατα ριππάς και δέχεται γκολ με το σταγονόμετρο!!! Οι φιλοξενούμενοι δεν σκοράρουν και δέχονται πάνω απο 2 σε κάθε ματς!!!!!".format(team1_name,team2_name)) 
         
       if (team1_int_avg_scored>2 and team2_int_avg_scored<0.6 and team1_int_avg_conceded<0.7 and team2_int_avg_conceded>1.7):
-      	print("{}-{}. Οι γηπεδούχοι σκοράρουν πάνω απο 2 γκολ σε κάθε ματς και δέχονται γκολ κάτω από 0.7. Οι φιλοξενούμενοι βάζουν γκολ <0.7 και δέχονται πάνω απο 2 σε κάθε ματς".format(team1_name,team2_name))   
+      	print("{}-{}. Οι γηπεδούχοι σκοράρουν πάνω απο 2 γκολ σε κάθε ματς και δέχονται γκολ κάτω από 0.7. Οι φιλοξενούμενοι βάζουν γκολ <0.7 και δέχονται πάνω απο 2 σε κάθε ματς".format(team1_name,team2_name))
+				points_diplo-=5
+				points_assos+=7
       
       #if (team1_int_chance_to_score>80 and team2_int_chance_to_score<30 and team1_int_chance_to_concede<30 and team1_int_chance_to_concede>70):
       	#print("{}-{}. Οι γηπεδούχοι έχουν πάνω απο 80% να σκοράρουν στο προσεχές ματς και λιγότερο απο 30% να δεχτούν. Οι φιλοξενούμενοι δε σκοράρουν και δέχεται με ευκολία γκολ. Η γηπεδούχοι θα κερδίσουν!!!".format(team1_name,team2_name))
       
       if (team1_int_chance_to_score>69 and team2_int_chance_to_score<45 and team1_int_chance_to_concede<45 and team2_int_chance_to_concede>69):
-      	print("{}-{}. Οι γηπεδούχοι έχουν πάνω απο 69% να σκοράρουν στο προσεχές ματς και λιγότερο απο 45% να δεχτούν. Οι φιλοξενούμενοι δε σκοράρουν και δέχεται με ευκολία γκολ. Η γηπεδούχοι θα κερδίσουν!!!".format(team1_name,team2_name)) 
+      	print("{}-{}. Οι γηπεδούχοι έχουν πάνω απο 69% να σκοράρουν στο προσεχές ματς και λιγότερο απο 45% να δεχτούν. Οι φιλοξενούμενοι δε σκοράρουν και δέχεται με ευκολία γκολ. Η γηπεδούχοι θα κερδίσουν!!!".format(team1_name,team2_name))
+				points_diplo-=4
+				points_assos+=5
       
       if (team1_int_chance_to_score<40 and team2_int_chance_to_score<40 and team1_int_chance_to_concede<40 and team2_int_chance_to_concede<40 and team1_last10_failtoscore_int>6 and team2_last10_failtoscore_int>6 and team1_last10_cleansheet_int>4 and team2_last10_cleansheet_int>4 and team1_int_avg_scored<1 and team2_int_avg_scored<1):
       	print("{}-{}. ΔΕ ΘΑ ΜΠΕΙ ΓΚΟΛ !!!!!!".format(team1_name,team2_name))
@@ -572,55 +599,91 @@ with open('links.txt','r') as fo:
       
       
       if (team2_last10_failtoscore_int>5 and team1_last10_failtoscore_int<2 and team2_last10_cleansheet_int<3 and team2_last10_cleansheet_int>5 and team1_int_avg_scored>1.5 and team2_int_avg_scored<1):
-         print("Γκολ: Οι γηπεδούχοι σκοράρουν ανελλειπώς, οι φιλοξενούμενοι έχουν δυστοκία! Άσσος!!!" )      
+				print("Γκολ: Οι γηπεδούχοι σκοράρουν ανελλειπώς, οι φιλοξενούμενοι έχουν δυστοκία! Άσσος!!!" )
+				points_diplo-=4
+				points_assos+=6
       
       if (team1_last10_failtoscore_int>5 and team1_last10_cleansheet_int<2):
       	print("Οι γηπεδούχοι έχουν σοβαρό πρόβλημα στο σκοράρισμα και τρώνε τουλάχιστον 1 γκολ σε κάθε ματς !!!")
+				points_diplo+=6
+				points_assos-=7
       
       if (team2_last10_failtoscore_int>5 and team2_last10_cleansheet_int<2):
       	print("Οι φιλοξενούμενοι έχουν σοβαρό πρόβλημα στο σκοράρισμα και τρώνε τουλάχιστον 1 γκολ σε κάθε ματς !!!")
+				points_diplo-=4
+				points_assos+=6
+				
       
       if (team1_last10_failtoscore_int>5 and team1_last10_cleansheet_int<2 and team1_int_avg_scored<0.8  ):
       	print("Οι γηπεδούχοι έχουν σοβαρό πρόβλημα στο σκοράρισμα και τρώνε τουλάχιστον γκολ !!!")
+				points_diplo+=6
+				points_assos-=7
       
       
       #μ.ο γκολ στα τελευταια 10. συνθήκη πόσα βαζει η μια και ποσα τρώει η αλλη
       if (team1_int_avg_scored>1.9 and team2_int_avg_conceded>1.9 and team2_int_avg_scored<0.8 and team1_int_avg_conceded<0.9 and team1_last10_failtoscore_int<3 and team2_last10_cleansheet_int<3):
-      	print("Οι γηπεδούχοι ΣΚΟΡΑΡΟΥΝ ΠΑΝΩ απο 2 ΓΚΟΛ σε κάθε ματς ενώ οι φιλοξενούμενοι δέχονται τουλάχιστον 2 γκολ σε κάθε ματς. ΑΣΣΟΣ!!!")
-      elif(team2_int_avg_scored>2.0 and team1_int_avg_conceded>2.0 and team1_int_avg_scored<0.8 and team2_int_avg_conceded<0.9 and team2_last10_failtoscore_int<3 and team1_last10_cleansheet_int<3):
-      	print("Οι γηπεδούχοι ΤΡΩΝΕ ΠΑΝΩ απο 2 ΓΚΟΛ σε κάθε ματς ενώ οι φιλοξενούμενοι ΣΚΟΡΑΡΟΥΝ τουλάχιστον 2 γκολ σε κάθε ματς. ΔΙΠΛΟ!!!")
+      	points_diplo-=6
+				points_assos+=7
+				print("Οι γηπεδούχοι ΣΚΟΡΑΡΟΥΝ ΠΑΝΩ απο 2 ΓΚΟΛ σε κάθε ματς ενώ οι φιλοξενούμενοι δέχονται τουλάχιστον 2 γκολ σε κάθε ματς. ΑΣΣΟΣ!!!")
+      
+			elif(team2_int_avg_scored>2.0 and team1_int_avg_conceded>2.0 and team1_int_avg_scored<0.8 and team2_int_avg_conceded<0.9 and team2_last10_failtoscore_int<3 and team1_last10_cleansheet_int<3):
+      	points_diplo+=6
+				points_assos-=7
+				print("Οι γηπεδούχοι ΤΡΩΝΕ ΠΑΝΩ απο 2 ΓΚΟΛ σε κάθε ματς ενώ οι φιλοξενούμενοι ΣΚΟΡΑΡΟΥΝ τουλάχιστον 2 γκολ σε κάθε ματς. ΔΙΠΛΟ!!!")
       
       if (team1_int_avg_scored>1.5 and team2_int_avg_conceded >1.6 and team2_int_avg_scored<0.9 and team1_int_avg_conceded<0.8 and team1_last10_failtoscore_int<4 and team2_last10_cleansheet_int<4):
-      	print("Οι γηπεδούχοι σκοράρουν αρκετά (>1.5) και αμύνονται καλά (<0.8). Οι φιλοξενούμενοι μπορούν να δεχτούν τα γκολ αυτά ενώ δύσκολα θα βρουν κενά στην άμυνα των γηπεδούχων. Άσσος.")
+      	points_diplo-=6
+				points_assos+=7
+				print("Οι γηπεδούχοι σκοράρουν αρκετά (>1.5) και αμύνονται καλά (<0.8). Οι φιλοξενούμενοι μπορούν να δεχτούν τα γκολ αυτά ενώ δύσκολα θα βρουν κενά στην άμυνα των γηπεδούχων. Άσσος.")
       elif (team2_int_avg_scored>1.5 and team1_int_avg_conceded >1.6 and team1_int_avg_scored<0.9 and team2_int_avg_conceded<0.8 and team2_last10_failtoscore_int<4 and team1_last10_cleansheet_int<4):
-      	print("Οι φιλοξενούμενοι σκοράρουν αρκετά (>1.5) και αμύνονται καλά (<0.8). Οι γηπεδούχοι μπορούν να δεχτούν τα γκολ αυτά ενώ δύσκολα θα βρουν κενά στην άμυνα των φιλοξενούμενων. Γέρνει στο Διπλό.")
+      	points_diplo+=6
+				points_assos-=7
+				print("Οι φιλοξενούμενοι σκοράρουν αρκετά (>1.5) και αμύνονται καλά (<0.8). Οι γηπεδούχοι μπορούν να δεχτούν τα γκολ αυτά ενώ δύσκολα θα βρουν κενά στην άμυνα των φιλοξενούμενων. Γέρνει στο Διπλό.")
       
       #Συνθήκη για το αν οι ομάδες σκοράρουν με τον ίδιο ρυθμό.
       if (team1_int_avg_scored== team2_int_avg_scored + 0.1 or team1_int_avg_scored== team2_int_avg_scored - 0.2 or team1_int_avg_scored== team2_int_avg_scored - 0.1 or team1_int_avg_scored== team2_int_avg_scored - 0.2):
       	print("Οι 2 ομάδες σκοράρουν σχεδόν με τον ίδιο ρυθμό.")
+				points_draw+=3
       	same_scoring_avg=True
       	if (team1_int_avg_conceded== team2_int_avg_conceded + 0.1 or team1_int_avg_conceded== team2_int_avg_conceded - 0.2 or team1_int_avg_conceded== team2_int_avg_conceded - 0.1 or team1_int_avg_conceded== team2_int_avg_conceded - 0.2):
 	      	print("Οι 2 ομάδες δέχονται γκολ σχεδόν με τον ίδιο ρυθμό.")
+					points_draw+=6
 	      	same_conceding_avg=True
 	      	if (same_scoring_avg==True and same_conceding_avg==True):
 		      	print("Οι ομάδες τρώνε και βάζουν τα ίδια γκολ. ΙΣΟΠΑΛΙΑ εν όψει.")
+						points_draw+=6
       
       if (team1_int_avg_scored>team2_int_avg_scored+0.8):
       	print("Προσοχή οι γηπεδούχοι σκοράρουν σχεδόν 1 γκολ ΠΑΡΑΠΑΝΩ από τους φιλοξενούμενος. Προβάδισμα στον Άσσο.")
+				points_assos+=5
       elif (team2_int_avg_scored>team1_int_avg_scored+0.8):
       	print("Προσοχή οι φιλοξενούμενοι σκοράρουν σχεδόν 1 γκολ ΠΑΡΑΠΑΝΩ από τους γηπεδούχους. Προβάδισμα στο Χ2")
+				points_diplo+=5
+				points_draw+=3
+				points_assos-=4
       
       if (team1_int_avg_conceded>team2_int_avg_conceded+0.7):
-      	print("Προσοχή οι γηπεδούχοι ΤΡΩΝΕ σχεδόν 1 γκολ ΠΑΡΑΠΑΝΩ από τους φιλοξενούμενος. Προβάδισμα στον Χ2.")
+      	print("Προσοχή οι γηπεδούχοι ΤΡΩΝΕ σχεδόν 1 γκολ ΠΑΡΑΠΑΝΩ από τους φιλοξενούμενους.Προβάδισμα στον Χ2.")
+				points_diplo+=5
       elif (team2_int_avg_conceded>team1_int_avg_conceded+0.7):
       	print("Προσοχή οι φιλοξενούμενοι ΤΡΩΝΕ σχεδόν 1 γκολ ΠΑΡΑΠΑΝΩ από τους γηπεδούχους. Προβάδισμα στο ΑΣΣΟ.")
+				points_diplo-=3
+				points_assos+=5
+				points_draw+=2
       
       if(team1_last10_cleansheet_int>5):
       	print("--> Οι γηπεδούχοι ΑΜΥΝΟΝΤΑΙ καλά. Πάνω από 5 Clean Sheets στα 10 τελευταία ματς.")
+				points_assos+=5
+				points_draw+=3
       if(team2_last10_cleansheet_int>5):
       	print("--> Οι φιλοξενούμενοι ΑΜΥΝΟΝΤΑΙ καλά. Πάνω από 5 Clean Sheets στα 10 τελευταία ματς.")
+				points_assos-=5
+				points_draw+=3
       if(team1_last10_failtoscore_int>5):
       	print("--> Προσοχή: Fail2Sore, οι γηπεδούχοι ΑΠΕΤΥΧΑΝ να σκοράρουν σε πάνω από 5/10 ματς!!! ΔΕΝ ΒΑΖΟΥΝ ΓΚΟΛ..")
+				points_assos-=8
+				points_diplo+=5
+				
       if(team2_last10_failtoscore_int>5):
       	print("--> Προσοχή: Fail2Sore, οι φιλοξενούμενοι ΑΠΕΤΥΧΑΝ να σκοράρουν σε πάνω από 5/10 ματς!!! ΔΕΝ ΒΑΖΟΥΝ ΓΚΟΛ..")
       if (team1_int_chance_to_score>69 and team2_int_chance_to_score>69 and team1_int_chance_to_concede>65 and team2_int_chance_to_concede>65 and team1_last10_failtoscore_int<3 and team2_last10_failtoscore_int<3 and team1_last10_cleansheet_int<3 and team2_last10_cleansheet_int<3 and team1_int_avg_scored>2 and team2_int_avg_scored>1.5):
@@ -628,11 +691,16 @@ with open('links.txt','r') as fo:
       
       if(team1_last10_failtoscore_int<3 and team1_last10_cleansheet_int>5 and team1_int_avg_scored>1.6 and team1_int_avg_scored<0.8):
       	print("Οι γηπεδούχοι βρίσκονται σε άριστη κατάσταση!!! Αξίζουν εμπιστοσύνη. Άσσος.")
+				points_assos+=8
       if(team2_last10_failtoscore_int<3 and team2_last10_cleansheet_int>5 and team2_int_avg_scored>1.6 and team2_int_avg_scored<0.8):
       	print("Οι Φιλοξενούμενοι βρίσκονται σε άριστη κατάσταση!!! Αξίζουν εμπιστοσύνη. Διπλό.")
+				points_diplo+=8
+				points_assos-=5
       
       if(team1_last10_cleansheet_int>5 and team2_last10_cleansheet_int<3 and team1_last10_failtoscore_int<3 and team2_last10_failtoscore_int>4):
       	print("CleanSheet & Fail2Sore, μεγάλες διαφορές ΥΠΕΡ των Γηπεδούχων. ΆΣΣΟΣ")
+				points_diplo-=8
+				points_diplo+=8
       
       
       print("")
