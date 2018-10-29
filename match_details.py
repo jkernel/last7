@@ -59,7 +59,7 @@ with open('links-penalty.txt','r') as fo:
       except NoSuchElementException:
       	print("No missed penalty")
       try:
-	      search_team1_own_goal= driver.find_element_by_css_selector('div.own, div.action:nth-of-type(15) div.player')
+	      search_team1_own_goal= driver.find_element_by_css_selector('div.own')
 	      owngoal=search_team1_own_goal.text
 	      print(owngoal)
       except NoSuchElementException:

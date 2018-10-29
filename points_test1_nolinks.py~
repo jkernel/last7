@@ -5,6 +5,15 @@ from selenium.common.exceptions import NoSuchElementException
 import time
 
 
+url_odds="https://www.statarea.com/predictions/date/today/starttime"
+driver=webdriver.PhantomJS('/home/jkernel/Desktop/python books/phantomjs/bin/phantomjs')
+driver.get(url_odds)
+search_apodosi_assou = driver.find_elements_by_css_selector('div.halfcontainer:nth-of-type(2) div.betinfoblock:nth-of-type(1) div.betitem:nth-of-type(2) div.value')
+search_apodosi_draw= driver.find_element_by_css_selector('div.halfcontainer:nth-of-type(2) div.betinfoblock:nth-of-type(1) div.betitem:nth-of-type(3) div.value')
+search_apodosi_diplou= driver.find_element_by_css_selector('div.halfcontainer:nth-of-type(2) div.betinfoblock:nth-of-type(1) div.betitem:nth-of-type(4) div.value')
+apodosi_assou = search_apodosi_assou.text
+apodosi_draw= search_apodosi_draw.text
+apodosi_diplou= search_apodosi_diplou.txt
 ###############################😎 Split LINES IN .TXT FILE & opening WEBDRIVER at the 1st Url #####################################################
 
 
@@ -703,7 +712,7 @@ with open('links.txt','r') as fo:
       	print("CleanSheet & Fail2Sore, μεγάλες διαφορές ΥΠΕΡ των Γηπεδούχων. ΆΣΣΟΣ")
       	points_diplo-=8
       	points_diplo+=8
-      
+      print("1: ", apodosi_assou,"X: ",apodosi_draw, "2: ",apodosi_diplou)
       print("ΑΣΣΟΣ:{}p,          ΙΣΟΠΑΛΙΑ:{}p,          ΔΙΠΛΟ:{}p".format(points_assos,points_draw,points_diplo))
       print("")
       print("")
